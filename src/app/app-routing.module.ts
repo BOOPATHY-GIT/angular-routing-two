@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router,NavigationEnd } from '@angular/router';
-import { MatomoTracker } from 'ngx-matomo';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -26,19 +25,11 @@ const routes: Routes = [
 
 export class AppRoutingModule {
 
-  constructor(private route:Router, private matomoTracker: MatomoTracker){
+  constructor(private route:Router){
 
     this.routeEvent(this.route);
   }  
 
   routeEvent(router: Router){
-    router.events.subscribe(e => {
-      if(e instanceof NavigationEnd){
-        console.log('Matamo track this page....')
-        this.matomoTracker.setUserId('angular-routing-one-user');
-        this.matomoTracker.setDocumentTitle('angular-routing-one');
-        this.matomoTracker.trackPageView();
-      }
-    });
   }
  }
